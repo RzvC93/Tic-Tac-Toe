@@ -75,20 +75,14 @@ function checkWinner() {
 			cellA.textContent === cellB.textContent &&
 			cellA.textContent === cellC.textContent
 		) {
-			cellA.style.backgroundColor = "green";
-			cellA.style.color = "white";
-
-			cellB.style.backgroundColor = "green";
-			cellB.style.color = "white";
-
-			cellC.style.backgroundColor = "green";
-			cellC.style.color = "white";
+			cellA.classList.add("winning-cell");
+			cellB.classList.add("winning-cell");
+			cellC.classList.add("winning-cell");
 
 			const winningPlayer = cellA.textContent;
 			const message = (document.getElementById(
 				"message"
 			).textContent = `Player ${winningPlayer} wins`);
-			updateScore(winningPlayer);
 			gameOver = true;
 		}
 	});
@@ -115,29 +109,9 @@ function resetGame() {
 	const gridCells = document.querySelectorAll(".cell-css");
 	gridCells.forEach((cell) => {
 		cell.textContent = "";
-		cell.style.backgroundColor = "rgb(194, 188, 188)";
-		cell.style.color = "#6d88a2";
+		cell.classList.remove("winning-cell");
 	});
 	document.getElementById("message").textContent = "";
 	currentPlayer = "X";
 	gameOver = false;
-}
-
-function resetScore() {
-	xScore = 0;
-	zeroScore = 0;
-	document.getElementById("score-x").textContent = `Score: ${xScore}`;
-	document.getElementById("score-zero").textContent = `Score: ${zeroScore}`;
-}
-
-function updateScore(winningPlayer) {
-	if (winningPlayer === "X") {
-		++xScore;
-		document.getElementById("score-x").textContent = `Score: ${xScore}`;
-	} else if (winningPlayer === "0") {
-		++zeroScore;
-		document.getElementById(
-			"score-zero"
-		).textContent = `Score: ${zeroScore}`;
-	}
 }
