@@ -1,8 +1,7 @@
 const maxCells = 3;
 let currentPlayer = "X";
-let xScore = 0;
-let zeroScore = 0;
 let gameOver = false;
+const MESSAGE_TIMEOUT = 2000;
 
 const winningCombinations = [
 	[0, 1, 2],
@@ -40,7 +39,7 @@ function handleCellClick() {
 					"This cell is already used, choose another one";
 				setTimeout(() => {
 					message.textContent = "";
-				}, 2000);
+				}, MESSAGE_TIMEOUT);
 				return;
 			}
 			event.target.textContent = currentPlayer;
